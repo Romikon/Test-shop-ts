@@ -11,10 +11,10 @@ export class UploadService {
   private readonly region: string;
 
   constructor(private readonly configService: ConfigService) {
-    this.region = 'eu-north-1'
-    this.bucketName = 'myfirstmybuckettest'
-    const accessKeyId = 'AKIA4MTWHFEJ3OFFMIEP'
-    const secretAccessKey = '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'
+    this.region = this.configService.get<string>('AWS_S3_REGION') || 'eu-north-1';
+    this.bucketName = this.configService.get<string>('BUCKET_NAME') || 'myfirstmybuckettest';
+    const accessKeyId = this.configService.get<string>('AWS_ACCESS_KEY') || 'AKIA4MTWHFEJ3OFFMIEP';
+    const secretAccessKey = this.configService.get<string>('AWS_SECRET_ACCESS_KEY') || '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';
 
     this.s3Client = new S3Client({
       region: this.region,
@@ -24,7 +24,7 @@ export class UploadService {
       },
     });
   }
-  
+
   async upload(fileName: string, stream: PassThrough): Promise<string> {
     try {
       const upload = new Upload({
