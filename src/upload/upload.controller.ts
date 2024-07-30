@@ -18,6 +18,6 @@ export class UploadController {
       const passThrough = new PassThrough();
       passThrough.end(file.buffer);
       console.log(file)
-      return this.uploadService.upload(file.originalname, passThrough);//, passThrough);
+      return this.uploadService.upload(file.originalname, passThrough);
     }
   }

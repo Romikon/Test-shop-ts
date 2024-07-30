@@ -11,10 +11,10 @@ export class UploadService {
   private readonly region: string;
 
   constructor(private readonly configService: ConfigService) {
-    this.region = 'eu-north-1'
-    this.bucketName = 'myfirstmybuckettest'
-    const accessKeyId = 'AKIA4MTWHFEJ3OFFMIEP'
-    const secretAccessKey = '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'
+    this.region = 'AWS_S3_REGION'
+    this.bucketName = 'BUCKET_NAME'
+    const accessKeyId = 'AWS_ACCESS_KEY'
+    const secretAccessKey = 'AWS_SECRET_ACCESS_KEY'
 
     
     this.s3Client = new S3Client({
